@@ -1,6 +1,6 @@
 package application;
 
-import java.text.ParseException;
+
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -14,7 +14,7 @@ public class Program {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner (System.in);
 		
-		try {
+	
 		System.out.println("Enter the account number: ");
 		int number = sc.nextInt();
 		System.out.println("Enter the name of holder: ");
@@ -26,16 +26,20 @@ public class Program {
 		double withdrawLimit = sc.nextDouble();
 		
 		Account account = new Account (number, holder, balance, withdrawLimit);
+		
+		System.out.println();
 		System.out.println("Enter amount for withdraw: ");
 		double amount = sc.nextDouble();
+		
+		try {
 		account.withdraw(amount);
-		System.out.println("New balance: "+ account.getBalance());
+		System.out.println("New balance: "+ String.format("%.2f", account.getBalance()));
 		
 		}
 		
 		
-		catch (DomainException e) {
-			System.out.println("Error message: " + e.getMessage());
+		catch (BusinessExceptions e) {
+			System.out.println(e.getMessage());
 		}
 		
 		
